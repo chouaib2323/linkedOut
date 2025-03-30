@@ -14,7 +14,7 @@ function EmployerApplications() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setJobs(response.data[0]); // Set full data array
+                setJobs(response.data[0]); 
             } catch (error) {
                 console.error('Error fetching applications:', error);
             }

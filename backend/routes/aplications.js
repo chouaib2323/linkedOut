@@ -8,6 +8,7 @@ const path = require("path");
 const router = express.Router();
 const Autho = require("../middleware/Autho"); // Ensure this file exists
 const Athent = require("../middleware/Athent"); // Ensure this file exists
+const { param } = require("./employer");
 
 const storage = multer.diskStorage({
     destination: "uploads/",
@@ -61,5 +62,18 @@ const response= await db.query(query,[employerId])
 console.log(response)
 res.status(201).json(response)
 
+})
+
+// update a job status
+router.put('/updateStatus',Athent, Autho(['employer']) , async (req , res )=>{
+  const {id ,status} = req.body
+  
+ const query = `UPDATE jobs
+ SET status = ? WHERE id= ? `
+ const rsponse =  await db.query(query,[status , id])
+   
+ if(rsponse){
+  res.status(201).json({rsponse})
+ } 
 })
 module.exports = router;

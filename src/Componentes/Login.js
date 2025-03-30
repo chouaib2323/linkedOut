@@ -29,7 +29,7 @@ const Login = () => {
                 console.log("Stored Token:", storedToken);
               
                 // ✅ Redirect to another page (example: dashboard)
-                navigate("/");
+                navigate("/Home");
             } else {
                 setFailed(data.message)
                 console.log("Login failed:", data.message);

@@ -66,7 +66,7 @@ const Register = () => {
 
                     <button className="w-full from-gray-400  to-sky-400 bg-gradient-to-l text-white p-2 rounded">Register</button>
                 </form>
-                <p className="text-sm mt-2">Already have an account? <Link className="text-blue-500" to="/login">Login</Link></p>
+                <p className="text-sm mt-2">Already have an account? <Link className="text-blue-500" to="/">Login</Link></p>
             </div>
         </div>
         </>
