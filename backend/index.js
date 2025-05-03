@@ -19,6 +19,9 @@ app.use("/employer", emp);
 const apply = require('./routes/aplications')
 app.use("/applications", apply);
 
+const companyHandler = require('./routes/companyHandler')
+app.use("/Company", companyHandler);
+
 
 //images
 

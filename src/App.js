@@ -10,6 +10,8 @@ import AddJob from './Componentes/AddJob.js';
 import PostedJobs from './Componentes/PostedJobs.js';
 import Aplications from './Componentes/Aplications.js';
 import EmployerApplications from './Componentes/EmployerApplications.js';
+import CompanyForm from './Componentes/CompanyForm.js';
+
 function App() {
   useEffect(() => {
     const checkTokenExpiration = () => {
@@ -41,6 +43,7 @@ function App() {
                 <Route path='/Postedjobs'element={<PostedJobs/>} />
                 <Route path='/aplications'element={<Aplications/>} />
                 <Route path='/EmployerApplications'element={<EmployerApplications/>} />
+                <Route path='/CompanyForm'element={<CompanyForm/>} />
             </Routes>
         </Router>
   );

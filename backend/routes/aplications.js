@@ -52,8 +52,9 @@ WHERE applications.userId=${userid}
 router.get('/getapplyedjobs',Athent , Autho(['employer']),async (req , res )=>{
 
   const employerId = req.user.id
-const  query = `SELECT firstname , familyname, email ,title ,description , employerId  , location,companyName , jobId ,userId ,applied_at ,path, letter
+const  query = `SELECT firstname , familyname, email ,title, employerId ,companies.name,location, jobId ,applied_at ,logo, letter
  FROM applications
+ INNER JOIN companies ON companies.id=applications.jobId
 INNER JOIN jobs ON jobs.id=applications.jobId
 INNER JOIN users ON users.id=applications.userId
 WHERE jobs.employerId=?

@@ -48,6 +48,11 @@ const Navbar = () => {
               Add a Job
             </Link>
           )}
+           {user?.role === "employer" && (
+            <Link to="/CompanyForm" className="text-white hover:text-gray-200 font-bold">
+              Company Info
+            </Link>
+          )}
           {user?.role === "jobseeker" ? (
             <Link to="/Aplications" className="text-white hover:text-gray-200 font-bold">
               My Applications
@@ -131,13 +136,14 @@ const Navbar = () => {
             My Applications
           </Link>
         ) : (
-          <Link
+          
+          user?.role === "employer" ?<Link
             to="/EmployerApplications"
             className="text-white text-lg font-semibold hover:text-gray-200"
             onClick={() => setIsOpen(false)}
           >
             Received Applications
-          </Link>
+          </Link>:''
         )}
         {user?.role === "employer" && (
           <Link

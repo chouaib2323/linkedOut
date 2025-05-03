@@ -10,9 +10,9 @@ function UpdateProfile() {
   const user = userdata ? JSON.parse(userdata) : null;
 
   const [data, setForm] = useState({
-    id: user?.id || "",
-    firstname: user?.firstname || "",
-    familyname: user?.familyname || "",
+    id: user?.id ,
+    firstname: user?.firstname ,
+    familyname: user?.familyname ,
   });
 
   const handleChange = (e) => {
@@ -21,13 +21,17 @@ function UpdateProfile() {
 
   const updateData = async () => {
     try {
-      await axios.put("http://localhost:3004/auth/updateUser", data, {
+    const response =   await axios.put("http://localhost:3004/auth/updateUser", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
-      alert("Profile updated successfully!");
+if(response){
+  alert("Profile updated successfully!");
+}
+else {
+  alert("Failed to update profile.");
+}
     } catch (error) {
       console.error("Error updating user:", error);
       alert("Failed to update profile.");

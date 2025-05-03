@@ -102,7 +102,8 @@ router.put('/updateUser', Athent, (req, res, next) => {
 
         // Check if the update was successful
         if (update.affectedRows > 0) {
-            return res.status(200).json({ message: "User updated successfully", data: update });
+            console.log("done successfully updated")
+            return res.status(200).json({ message: "User updated successfully" });
         } else {
             return res.status(404).json({ message: "User not found or no changes made" });
         }

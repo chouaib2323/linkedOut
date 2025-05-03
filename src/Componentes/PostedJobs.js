@@ -94,6 +94,7 @@ function PostedJobs() {
             filteredJobs.map((job) => (
               <div key={job.id} className="bg-white p-6 rounded-lg shadow-lg mb-6 border border-gray-300">
                 <h2 className="text-2xl font-semibold text-gray-800">{job.title}</h2>
+                <p className=" mt-2 text-sky-500">{job.type}</p>
                 <p className="text-gray-600 mt-2">{job.description}</p>
                 <div className="mt-4">
                   <p className="text-gray-700 font-medium">Salary: {job.salary}</p>
