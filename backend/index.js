@@ -10,6 +10,8 @@ const app=express()
 app.use(cors({ origin: "http://localhost:3000" })); // Adjust if your frontend runs on a different port
 
 app.use(express.json())
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const auther = require('./routes/auth')
 app.use("/auth", auther);
@@ -21,6 +23,10 @@ app.use("/applications", apply);
 
 const companyHandler = require('./routes/companyHandler')
 app.use("/Company", companyHandler);
+
+const adminn = require('./routes/admin')
+app.use("/admin", adminn);
+
 
 
 //images

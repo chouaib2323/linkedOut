@@ -48,23 +48,30 @@ const Navbar = () => {
               Add a Job
             </Link>
           )}
-           {user?.role === "employer" && (
-            <Link to="/CompanyForm" className="text-white hover:text-gray-200 font-bold">
-              Company Info
-            </Link>
-          )}
+       {(user?.role === "employer") && (
+  <Link to="/CompanyForm" className="text-white hover:text-gray-200 font-bold">
+    Company Info
+  </Link>
+)}
+
           {user?.role === "jobseeker" ? (
             <Link to="/Aplications" className="text-white hover:text-gray-200 font-bold">
               My Applications
             </Link>
-          ) : (
+          ) :''}
+          {user?.role === "employer" ? (
             <Link to="/EmployerApplications" className="text-white hover:text-gray-200 font-bold">
               Received Applications
-            </Link>
-          )}
+            </Link>):''
+          }
           {user?.role === "employer" && (
             <Link to="/Postedjobs" className="text-white hover:text-gray-200 font-bold">
               Jobs
+            </Link>
+          )}
+           {user?.role === "admin" && (
+            <Link to="/AppCompanies" className="text-white hover:text-gray-200 font-bold">
+              approve companies info 
             </Link>
           )}
           {user?.role === "employer" && (

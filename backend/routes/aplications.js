@@ -1,19 +1,19 @@
 const express = require("express");
-const db = require("../config/db"); // Ensure db connection is correct
+const db = require("../config/db"); 
 require("dotenv").config();
 const multer = require("multer");
 const path = require("path");
 
 
 const router = express.Router();
-const Autho = require("../middleware/Autho"); // Ensure this file exists
-const Athent = require("../middleware/Athent"); // Ensure this file exists
+const Autho = require("../middleware/Autho"); 
+const Athent = require("../middleware/Athent"); 
 const { param } = require("./employer");
 
 const storage = multer.diskStorage({
     destination: "uploads/",
     filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+      cb(null, Date.now() + path.extname(file.originalname)); 
     },
   });
 const upload = multer({ storage  });
