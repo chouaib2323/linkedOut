@@ -22,6 +22,29 @@ function Applications() {
         fetchJobs();
     }, [token]);
 
+
+    const [companyInfo, setInfo] = useState(null);
+  useEffect(() => {
+    const checkCompany = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const resp = await axios.get("http://localhost:3004/Company/allCompanies", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (resp && resp.data) {
+          setInfo(resp.data.company[0]);
+          
+        }
+      } catch (err) {
+        console.error("Error checking company:", err);
+      }
+    };
+
+    checkCompany();
+  }, []);
     return (
         <div className="min-h-screen bg-gray-100">
             <Navbar />
@@ -34,13 +57,13 @@ function Applications() {
                         {jobs.map((job) => (
                             <div key={job.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
                                 <div className="flex items-center mb-4">
-                                    <img src={`http://localhost:3004${job.profile_image}`} alt={job.companyName} className="w-12 h-12 object-cover rounded-full mr-3" />
+                                    <img src={`http://localhost:3004${companyInfo&&companyInfo.logo}`} alt={job.companyName} className="w-12 h-12 object-cover rounded-full mr-3" />
                                     <div>
                                         <h2 className="text-xl font-semibold">{job.title}</h2>
                                         <p className="text-gray-500 text-sm">{job.companyName}</p>
                                     </div>
                                 </div>
-                                <p className="text-gray-700 text-sm mb-2"><span className="font-medium">Location:</span> {job.location}</p>
+                                <p className="text-gray-700 text-sm mb-2"><span className="font-medium">Location:</span> {companyInfo&&companyInfo.location}</p>
                                 <p className="text-gray-700 text-sm mb-2"><span className="font-medium">Salary:</span> {job.salary}</p>
                                 <p className="text-gray-700 text-sm mb-2"><span className="font-medium">Status:</span> <span className={`px-2 py-1 rounded text-white ${job.status === 'open' ? 'bg-green-500' : 'bg-red-500'}`}>{job.status}</span></p>
                                 <p className="text-gray-500 text-xs">Applied on: {new Date(job.applied_at).toLocaleDateString()}</p>
