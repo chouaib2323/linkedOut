@@ -39,37 +39,32 @@ const upload = multer({
   },
 });
 
-// add job handler
-router.post("/addjob",Athent, Autho(["employer"]), upload.single("companyPhoto"), async (req, res) => {
+// Add job route
+router.post("/addjob", Athent, Autho(["employer"]), upload.single("companyPhoto"), async (req, res) => {
   try {
-   const employerId = req.user.id
-    const { title ,type, description, salary, status , companyId } = req.body;
-    if (!title || !description || !salary || !location || !status || !employerId|| !companyId) {
-      return res.status(400).json({ message: "All fields are required" });
+    const employerId = req.user.id;
+    const { title, type, description, salary, status, companyId } = req.body;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+    // Validate company
+    const [companyRows] = await db.query("SELECT * FROM companies WHERE id = ? AND userId = ?", [companyId, employerId]);
+    if (!companyRows.length || companyRows[0].statue !== "approved") {
+      return res.status(400).json({ message: "Company not found or not approved" });
     }
 
-    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
-    // Insert into database
-    const query = 
-    `  INSERT INTO jobs (title, type, description, salary, status, employerId,companyId )
-      VALUES (?, ?, ?, ?, ?, ?, ?)`
-    ;
-   
-   await db.query(query, [title,type, description, salary, status,employerId,companyId], (err, result) => {
-      if (err) {
-        console.error("Database error:", err);
-        return res.status(500).json({ message: "Database error" });
-      }
-      res.status(201).json({ message: "Job added successfully", jobId: result.insertId });
-    });
+    const query = `
+      INSERT INTO jobs (title, type, description, salary, status, employerId, companyId)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const [result] = await db.query(query, [title, type, description, salary, status, employerId, companyId]);
+
+    res.status(201).json({ message: "Job added successfully", jobId: result.insertId });
   } catch (error) {
     console.error("Error adding job:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-
-  
 });
-
 
 
 

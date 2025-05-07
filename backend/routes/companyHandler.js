@@ -36,12 +36,14 @@ const upload = multer({
 });
 // POST /api/companies
 router.post('/CompanyInfo', authenticate , Autho(['employer']), upload.single('logo'), async (req, res) => {
+
   const userId = req.user.id;
   const { name, location, industry, website } = req.body;
   const logo =  req.file ? `/uploads/${req.file.filename}` : null;
   console.log(logo)
 
   try {
+ 
     // check if company already exists for this user
     const [rows] = await db.execute('SELECT * FROM companies WHERE userId = ?', [userId]);
     if (rows.length > 0) return res.status(400).json({ message: 'Company already created' });
@@ -52,6 +54,8 @@ router.post('/CompanyInfo', authenticate , Autho(['employer']), upload.single('l
     );
 
     res.status(201).json({ message: 'Company created' });
+  
+ 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
