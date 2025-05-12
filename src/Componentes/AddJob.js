@@ -77,7 +77,9 @@ function AddJob() {
       });
       setCompanyPhoto(null);
     } catch (error) {
-      setMessage({ text: "Failed to post job. Try again.", type: "error" });
+      console.error(error);  // Add more detailed error logging
+      const errorMsg = error?.response?.data?.message || "Failed to post job. Try again.";
+      setMessage({ text: errorMsg, type: "error" });
     }
   };
 
@@ -121,7 +123,7 @@ function AddJob() {
               <option value="closed">Closed</option>
             </select>
 
-            <input type="file" accept="image/*" onChange={handleFileChange} className="w-full" disabled={!companyInfo} />
+           
 
             <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50" disabled={!companyInfo}>
               Post Job

@@ -9,6 +9,7 @@
     "mongoose": "^8.10.1",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.12.0",
+    "nodemailer": "^7.0.3",
     "react-router-app": "^0.1.6"
   }
 }

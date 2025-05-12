@@ -15,6 +15,7 @@ function EmployerApplications() {
                     },
                 });
                 setJobs(response.data[0]); 
+                console.log(response.data)
             } catch (error) {
                 console.error('Error fetching applications:', error);
             }
