@@ -113,7 +113,7 @@ function Home() {
       <Navbar />
 
       <div className={`container mx-auto py-10 px-4 ${able2 ? 'blur-md' : ''}`}>
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6">
+        <h1 className="text-3xl font-semibold text-sky-500 mb-6">
           Welcome, {user ? user.firstname : 'Guest'}
         </h1>
 
