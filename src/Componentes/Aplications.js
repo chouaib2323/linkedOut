@@ -49,7 +49,8 @@ function Applications() {
         <div className="min-h-screen bg-gray-100">
             <Navbar />
             <div className="container mx-auto py-10 px-5">
-                <h1 className="text-3xl font-semibold text-gray-800 mb-6">My Applications</h1>
+           <   h1 className="text-3xl font-semibold text-gray-800 mb-6">My Applications</h1> 
+           <   h1 className="text-xl font-semibold text-red-400 mb-6">you will recive an email by the companny you applyed for</h1> 
                 {jobs.length === 0 ? (
                     <p className="text-gray-600">You have not applied for any jobs yet.</p>
                 ) : (

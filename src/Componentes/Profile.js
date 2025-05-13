@@ -11,6 +11,7 @@ function Profile() {
   const toggleUpdateProfile = () => {
     setAble(!able);
   };
+console.log(userdata)
 
   return (
     <div className="relative min-h-screen bg-gray-100">
@@ -19,6 +20,7 @@ function Profile() {
       <div className={`flex items-center justify-center min-h-screen transition-all duration-300 ${able ? "blur-sm bg-gray-300" : ""}`}>
         <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">User Profile</h1>
+          <h1 className="text-xl font-bold text-red-400 mb-4">login again when updated to see updated info</h1>
           <div className="space-y-3">
             <p className="text-gray-700"><span className="font-semibold">Role:</span> {user?.role || "N/A"}</p>
             <p className="text-gray-700"><span className="font-semibold">First Name:</span> {user?.firstname || "N/A"}</p>
