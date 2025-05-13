@@ -74,6 +74,11 @@ const Navbar = () => {
               approve companies info 
             </Link>
           )}
+            {user?.role === "admin" && (
+            <Link to="/AdminUserList" className="text-white hover:text-gray-200 font-bold">
+              all users
+            </Link>
+          )}
           {user?.role === "employer" && (
             <Link to="/contact" className="text-white hover:text-gray-200 font-bold">
               Contact Admin
